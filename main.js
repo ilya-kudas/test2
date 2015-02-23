@@ -19,7 +19,7 @@ for (var name in Game.creeps) {
         guard(creep);
     }
 
-    if (creep.getActiveBodyparts(Game.HEAL).length > 0)
+    if (creep.getActiveBodyparts(Game.HEAL) > 0)
     {
         healer(creep);
     }
