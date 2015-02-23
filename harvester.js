@@ -1,5 +1,5 @@
 module.exports = function (creep) {
-    if (creep.energy < creep.energyCapacity) {
+    if (creep.energy < creep.energyCapacity && creep.getActiveBodyparts(Game.WORK).length > 0) {
         var source = creep.pos.findClosest(Game.SOURCES);
         creep.moveTo(source);
         creep.harvest(source);
