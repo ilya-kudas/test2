@@ -5,7 +5,7 @@ var hostiles = room.find(Game.HOSTILE_CREEPS);
 
 if (hostiles.length > 0)
 {
-    spawn.createCreep([Game.ATTACK, Game.ATTACK, Game.MOVE], null, { role: 'guard' });
+    spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' });
 }
 
 else if (spawn.spawning == null && harvesters.length < 3)
