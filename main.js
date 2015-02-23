@@ -1,6 +1,7 @@
 var harvester = require('harvester');
 var builder = require('builder');
 var guard = require('guard');
+var healer = require('healer');
 require('spawner');
 
 for (var name in Game.creeps) {
@@ -16,5 +17,10 @@ for (var name in Game.creeps) {
 
     if (creep.memory.role == 'guard') {
         guard(creep);
+    }
+
+    if (creep.getActiveBodyparts(Game.HEAL).length > 0)
+    {
+        healer(creep);
     }
 }
