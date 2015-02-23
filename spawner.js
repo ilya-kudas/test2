@@ -8,10 +8,10 @@ if (spawn.spawning == null) {
     var hostiles = room.find(Game.HOSTILE_CREEPS);
 
     if (hostiles.length > 0) {
-        //if (guards.length == 2)
-        //    spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
-        //else
-        spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' });
+        if (guards.length == 2)
+            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
+        else
+            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' });
     }
 
     else if (harvesters.length < 3) {
