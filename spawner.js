@@ -1,5 +1,5 @@
 var spawn = Game.spawns.Spawn1;
-var room = Game.getRoom('sim');
+var room = spawn.room;
 var harvesters = _.filter(Game.creeps, { memory: { role: 'harvester' } });
 var hostiles = room.find(Game.HOSTILE_CREEPS);
 
