@@ -11,7 +11,7 @@ var createRanged = function (number)
     return spawn.createCreep(a, null, { role: 'guard' })
 }
 
-if (spawn.spawning == null) {
+if (spawn != null && spawn.spawning == null) {
 
     var room = spawn.room;
     var harvesters = _.filter(Game.creeps, { memory: { role: 'harvester' } });
@@ -20,7 +20,7 @@ if (spawn.spawning == null) {
 
     if (hostiles.length > 0 && guards.length < 7) {
         if (guards.length == 2)
-            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
+            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
         else
         {
             if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
