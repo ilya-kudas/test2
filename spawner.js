@@ -11,7 +11,11 @@ if (spawn.spawning == null) {
         if (guards.length == 2)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
         else
-            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' });
+        {
+            if (spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' }) == Game.ERR_NOT_ENOUGH_ENERGY)
+                if (spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' }) == Game.ERR_NOT_ENOUGH_ENERGY)
+                    if (guards.length == 0) spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' });
+        }
     }
 
     else if (harvesters.length < 3) {
