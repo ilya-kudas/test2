@@ -10,7 +10,7 @@ if (spawn.spawning == null) {
     if (hostiles.length > 0) {
         if (guards.length == 2)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
-        else
+        else if (guards.length < 7)
         {
             if (spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' }) == Game.ERR_NOT_ENOUGH_ENERGY)
                 if (spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' }) == Game.ERR_NOT_ENOUGH_ENERGY)
