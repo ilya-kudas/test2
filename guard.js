@@ -12,7 +12,7 @@ module.exports = function (creep) {
         }
     }
 
-    if (sum > 10) {
+    if (sum > 15) {
         creep.rangedMassAttack();
     } else {
         var target = creep.pos.findClosest(Game.HOSTILE_CREEPS);
