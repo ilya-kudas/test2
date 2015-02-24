@@ -1,5 +1,16 @@
 var spawn = Game.spawns.Spawn1;
 
+var createRanged = function (number)
+{
+    var a = [];
+    for (var i = 0; i < number; i++)
+    {
+        a.push(Game.RANGED_ATTACK);
+    }
+    
+    return spawn.createCreep(a, null, { role: 'guard' })
+}
+
 if (spawn.spawning == null) {
 
     var room = spawn.room;
@@ -12,9 +23,9 @@ if (spawn.spawning == null) {
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
         else
         {
-            if (spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' }) == Game.ERR_NOT_ENOUGH_ENERGY)
-                if (spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' }) == Game.ERR_NOT_ENOUGH_ENERGY)
-                    if (guards.length == 0) spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK], null, { role: 'guard' });
+            if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
+                if (createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
+                    if (guards.length == 0) createRanged(3);
         }
     }
 
