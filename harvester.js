@@ -1,5 +1,5 @@
 var spawn = Game.spawns.Spawn1;
-var source = _.sortBy(creep.room.find(Game.SOURCES), function (n) { return Math.pow(spawn.pos.x - n.pos.x, 2) + Math.pow(spawn.pos.y - n.pos.y, 2); })[0];
+var source = _.sortBy(spawn.room.find(Game.SOURCES), function (n) { return Math.pow(spawn.pos.x - n.pos.x, 2) + Math.pow(spawn.pos.y - n.pos.y, 2); })[0];
 //var source = spawn.pos.findClosest(Game.SOURCES);
 
 module.exports = function (creep) {
