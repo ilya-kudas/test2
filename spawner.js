@@ -30,6 +30,6 @@ if (spawn != null && spawn.spawning == null) {
     }
 
     else if (harvesters.length < 3) {
-        spawn.createCreep([Game.WORK, Game.WORK, Game.WORK, Game.CARRY, Game.MOVE], null, { role: 'harvester' });
+        spawn.createCreep([Game.WORK, Game.WORK, Game.CARRY, Game.CARRY, Game.MOVE], null, { role: 'harvester' });
     }
 }
