@@ -15,6 +15,7 @@ if (spawn != null && spawn.spawning == null) {
 
     var room = spawn.room;
     var harvesters = _.filter(Game.creeps, { memory: { role: 'harvester' } });
+    var carriers = _.filter(Game.creeps, { memory: { role: 'carrier' } });
     var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
     var hostiles = room.find(Game.HOSTILE_CREEPS);
 
@@ -33,7 +34,7 @@ if (spawn != null && spawn.spawning == null) {
         spawn.createCreep([Game.WORK, Game.WORK, Game.CARRY, Game.CARRY, Game.MOVE], null, { role: 'harvester' });
     }
 
-    else if (harvesters.length == 3) {
+    else if (harvesters.length == 2 && carriers.length == 0) {
         spawn.createCreep([Game.CARRY, Game.CARRY, Game.MOVE, Game.MOVE], null, { role: 'carrier' });
     }
 }
