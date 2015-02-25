@@ -24,7 +24,7 @@ if (spawn != null && spawn.spawning == null) {
         else
         {
             if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
-                if (createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
+                if (hostiles.length > guards.length && createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
                     if (guards.length == 0) createRanged(3);
         }
     }
