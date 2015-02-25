@@ -20,7 +20,7 @@ if (spawn != null && spawn.spawning == null) {
     var hostiles = room.find(Game.HOSTILE_CREEPS);
 
     if (hostiles.length > 0 && guards.length < 7) {
-        if (guards.length == 2)
+        if (guards.length == 2 && guards.length == 5)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
         else
         {
