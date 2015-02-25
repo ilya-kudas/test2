@@ -29,7 +29,11 @@ if (spawn != null && spawn.spawning == null) {
         }
     }
 
-    else if (harvesters.length < 3) {
+    else if (harvesters.length < 2) {
         spawn.createCreep([Game.WORK, Game.WORK, Game.CARRY, Game.CARRY, Game.MOVE], null, { role: 'harvester' });
+    }
+
+    else if (harvesters.length == 3) {
+        spawn.createCreep([Game.CARRY, Game.CARRY, Game.MOVE, Game.MOVE], null, { role: 'carrier' });
     }
 }
