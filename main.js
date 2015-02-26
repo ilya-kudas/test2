@@ -3,6 +3,7 @@ var builder = require('builder');
 var guard = require('guard');
 var healer = require('healer');
 var carrier = require('carrier');
+var kite = require('kite');
 require('spawner');
 
 for (var name in Game.creeps) {
@@ -22,6 +23,10 @@ for (var name in Game.creeps) {
 
     if (creep.memory.role == 'guard') {
         guard(creep);
+    }
+
+    if (creep.memory.role == 'kite') {
+        kite(creep);
     }
 
     if (creep.getActiveBodyparts(Game.HEAL) > 0)
