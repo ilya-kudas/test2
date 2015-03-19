@@ -10,6 +10,10 @@ for (var name in Game.creeps) {
     var creep = Game.creeps[name];
 
     try {
+        if (creep.getActiveBodyparts(Game.HEAL) > 0) {
+            healer(creep);
+        }
+
         if (creep.memory.role == 'harvester') {
             harvester(creep);
         }
@@ -30,8 +34,5 @@ for (var name in Game.creeps) {
             kite(creep);
         }
 
-        if (creep.getActiveBodyparts(Game.HEAL) > 0) {
-            healer(creep);
-        }
     } catch (e) { }
 }

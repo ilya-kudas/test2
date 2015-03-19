@@ -18,7 +18,7 @@ if (spawn != null && spawn.spawning == null) {
     var carriers = _.filter(Game.creeps, { memory: { role: 'carrier' } });
     var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
     var kites = _.filter(Game.creeps, { memory: { role: 'kite' } });
-    var hostiles = room.find(Game.HOSTILE_CREEPS);
+    var hostiles = spawn.pos.findInRange(Game.HOSTILE_CREEPS, 16);
 
     if (hostiles.length > 0 && guards.length < 7) {
 
