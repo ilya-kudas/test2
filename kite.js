@@ -18,8 +18,11 @@ module.exports = function (creep) {
     if (target != null) {
         var path = creep.pos.findPathTo(target);
         if (path.length > 16)
-            creep.moveTo(spawn);
-        else if (path.length > 4)
+            if(Game.flags.Flag1)
+                creep.moveTo(Game.flags.Flag1);
+            else 
+                creep.moveTo(spawn);
+        else if (path.length > 3)
             creep.move(path[0].direction);
         //else if (path.length > 3);
             // wait

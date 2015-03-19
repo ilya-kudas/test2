@@ -18,11 +18,11 @@ if (spawn != null && spawn.spawning == null) {
     var carriers = _.filter(Game.creeps, { memory: { role: 'carrier' } });
     var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
     var kites = _.filter(Game.creeps, { memory: { role: 'kite' } });
-    var hostiles = spawn.pos.findInRange(Game.HOSTILE_CREEPS, 16);
+    var hostiles = spawn.pos.findInRange(Game.HOSTILE_CREEPS, 10);
 
     if (hostiles.length > 0 && guards.length < 7) {
 
-        if(kites.length < 10)
+        if(kites.length < 20)
             spawn.createCreep([Game.RANGED_ATTACK, Game.HEAL, Game.MOVE, Game.MOVE], null, { role: 'kite' });
         else if (guards.length == 2 || guards.length == 5)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
