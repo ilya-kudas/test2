@@ -22,8 +22,8 @@ if (spawn != null && spawn.spawning == null) {
 
     if (hostiles.length > 0 && guards.length < 7) {
 
-        if(kites.length == 0)
-            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE, Game.MOVE], null, { role: 'kite' });
+        if(kites.length < 10)
+            spawn.createCreep([Game.RANGED_ATTACK, Game.HEAL, Game.MOVE, Game.MOVE], null, { role: 'kite' });
         else if (guards.length == 2 || guards.length == 5)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
         else

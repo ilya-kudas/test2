@@ -9,28 +9,29 @@ require('spawner');
 for (var name in Game.creeps) {
     var creep = Game.creeps[name];
 
-    if (creep.memory.role == 'harvester') {
-        harvester(creep);
-    }
+    try {
+        if (creep.memory.role == 'harvester') {
+            harvester(creep);
+        }
 
-    if (creep.memory.role == 'carrier') {
-        carrier(creep);
-    }
+        if (creep.memory.role == 'carrier') {
+            carrier(creep);
+        }
 
-    if (creep.memory.role == 'builder') {
-        builder(creep);
-    }
+        if (creep.memory.role == 'builder') {
+            builder(creep);
+        }
 
-    if (creep.memory.role == 'guard') {
-        guard(creep);
-    }
+        if (creep.memory.role == 'guard') {
+            guard(creep);
+        }
 
-    if (creep.memory.role == 'kite') {
-        kite(creep);
-    }
+        if (creep.memory.role == 'kite') {
+            kite(creep);
+        }
 
-    if (creep.getActiveBodyparts(Game.HEAL) > 0)
-    {
-        healer(creep);
-    }
+        if (creep.getActiveBodyparts(Game.HEAL) > 0) {
+            healer(creep);
+        }
+    } catch (e) { }
 }
