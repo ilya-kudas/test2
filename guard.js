@@ -17,8 +17,11 @@ module.exports = function (creep) {
     } else {
         var target = creep.pos.findClosest(Game.HOSTILE_CREEPS);
         if (target != null) {
-            creep.moveTo(target);
+            //creep.moveTo(target);
             creep.rangedAttack(target);
         }            
     }
+
+    if (Game.flags.Flag1)
+        creep.moveTo(Game.flags.Flag1);
 }

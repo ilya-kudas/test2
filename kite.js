@@ -15,7 +15,7 @@ function getPositions(pos, step)
 
 module.exports = function (creep) {
 
-    var target = creep.pos.findClosest(Game.HOSTILE_CREEPS);
+    var target = spawn.pos.findClosest(Game.HOSTILE_CREEPS);
     if (creep.hits / creep.hitsMax < 0.5)
     {
         if (target != null)
