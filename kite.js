@@ -24,7 +24,7 @@ module.exports = function (creep) {
                 creep.moveTo(spawn);
         else if (path.length > 3)
             creep.move(path[0].direction);
-        //else if (path.length > 3);
+        else if (path.length > 2);
             // wait
         else if (path.length > 0) {
             creep.rangedAttack(target);
