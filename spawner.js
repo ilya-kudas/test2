@@ -11,9 +11,10 @@ function createRanged(number)
     return spawn.createCreep(a, null, { role: 'guard' })
 }
 
-function sum(array)
-{
-    return _.reduce(array, function (sum, n) { return sum + n; });
+function sum(array) {
+    var res = 0;
+    _.forEach(array, function (n) { res += n; });
+    return res;
 }
 
 if (spawn != null && spawn.spawning == null) {
