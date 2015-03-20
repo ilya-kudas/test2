@@ -19,18 +19,21 @@ if (spawn != null && spawn.spawning == null) {
     var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
     var kites = _.filter(Game.creeps, { memory: { role: 'kite' } });
     var hostiles = spawn.pos.findInRange(Game.HOSTILE_CREEPS, 10);
+    var healers = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.HEAL) > 0; })
 
-    if (hostiles.length > 0 && guards.length < 7) {
-
-        if(kites.length < 20)
-            spawn.createCreep([Game.RANGED_ATTACK, Game.HEAL, Game.MOVE, Game.MOVE], null, { role: 'kite' });
-        else if (guards.length == 2 || guards.length == 5)
-            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
-        else
-        {
-            if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
-                if (hostiles.length > guards.length && createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
-                    if (guards.length == 0) createRanged(3);
+    if (hostiles.length > 0) {
+        if (guards.length < 6) {
+            if (healers.length < 2)
+                spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });
+            else {
+                if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
+                    if (hostiles.length > guards.length && createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
+                        if (guards.length == 0) createRanged(3);
+            }
+        }
+        else {
+            if (kites.length < 20)
+                spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE, Game.RANGED_ATTACK, Game.MOVE], null, { role: 'kite' });
         }
     }
 
