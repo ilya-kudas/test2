@@ -14,7 +14,16 @@ function getPositions(pos, step)
 }
 
 module.exports = function (creep) {
+
     var target = creep.pos.findClosest(Game.HOSTILE_CREEPS);
+    if (creep.hits / creep.hitsMax < 0.5)
+    {
+        if (target != null)
+            creep.rangedAttack(target);
+        creep.moveTo(spawn);
+        return;
+    }
+
     if (target != null) {
         var path = creep.pos.findPathTo(target);
         if (path.length > 16)
