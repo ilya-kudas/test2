@@ -32,7 +32,7 @@ if (spawn != null && spawn.spawning == null) {
     var hHealth = sum(_.pluck(hostiles, 'hits'));
 
     if (hostiles.length > 0 && (gHealth / hHealth) < 1) {
-        if (kites.length < 0 && gDynamic.length < 2)
+        if (kites.length < 1 && gDynamic.length < 2)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE, Game.RANGED_ATTACK, Game.MOVE], null, { role: 'kite' });
         else if (healers.length < 2)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL], null, { role: 'guard' });

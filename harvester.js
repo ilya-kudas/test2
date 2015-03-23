@@ -5,7 +5,7 @@ var source = _.sortBy(spawn.room.find(Game.SOURCES), distance)[0];
 
 module.exports = function (creep) {
     if (creep.energy > 0) {
-        var harvesters = _.sortBy(_.difference(_.filter(Game.creeps, { memory: { role: 'harvester' } }), [creep]), distance);
+        var harvesters = _.sortBy(_.filter(Game.creeps, { memory: { role: 'harvester' } }), distance);
         if (harvesters.length > 0) {
             creep.transferEnergy(harvesters[0]);
         }
