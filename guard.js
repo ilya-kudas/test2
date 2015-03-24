@@ -34,17 +34,23 @@ function sumTargets(pos)
 
 var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
 var pp = Game.flags.Flag2 ? getFormationPoints(Game.flags.Flag2.pos) : [];
-var pl = _.filter(pp, function (n) { return spawn.room.lookForAt('creep', n) == undefined; });
+//var pl = pp.map(function (n) { return spawn.room.lookForAt('creep', n); });
+//var pu = _.filter(pl, function (n) { n == undefined; });
 for (var name in guards) {
     var creep = guards[name];
 
     if (Game.flags.Flag2) {
-        if (pp[0].isEqualTo(creep));
-        if (pl.length > 0) {
-            creep.moveTo(pl[0]);
-        }
-        else {
-            creep.moveTo(Game.flags.Flag2);
+        creep.moveTo(Game.flags.Flag2);
+        for (var p in pp)
+        {
+            if (p.isEqualTo(creep.pos))
+                break;
+
+            var z = spawn.room.lookForAt('creep', n);
+            if (z == undefined) {
+                creep.moveTo(p);
+                break;
+            }
         }
     }
     else if (Game.flags.Flag1)
