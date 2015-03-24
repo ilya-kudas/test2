@@ -31,11 +31,11 @@ if (spawn != null && spawn.spawning == null) {
     var gHealth = sum(_.pluck(guards, 'hits'));
     var hHealth = sum(_.pluck(hostiles, 'hits'));
 
-    if (hostiles.length > 0 && (gHealth / hHealth) < 1) {
+    if ((hostiles.length > 0 && (gHealth / hHealth) < 1) || spawn.energy > 5000) {
         if (kites.length < 1 && gDynamic.length < 2)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE, Game.RANGED_ATTACK, Game.MOVE], null, { role: 'kite' });
         else if (healers.length < 2)
-            spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.HEAL, Game.MOVE], null, { role: 'guard' });
+            spawn.createCreep([Game.HEAL, Game.HEAL, Game.HEAL, Game.HEAL, Game.MOVE], null, { role: 'guard' });
 /*
         else if (guards.length < 6) {
             if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
