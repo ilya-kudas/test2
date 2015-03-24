@@ -24,7 +24,7 @@ if (spawn != null && spawn.spawning == null) {
     var carriers = _.filter(Game.creeps, { memory: { role: 'carrier' } });
     var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
     var kites = _.filter(Game.creeps, { memory: { role: 'kite' } });
-    var hostiles = _.filter(spawn.pos.findInRange(Game.HOSTILE_CREEPS, 16), function (c) { return spawn.pos.findPathTo(c).length < 20; });
+    var hostiles = _.filter(spawn.pos.findInRange(Game.HOSTILE_CREEPS, 20), function (c) { return spawn.pos.findPathTo(c).length < 30; });
     var healers = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.HEAL) > 0; });
     var gStatic = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.MOVE) == 0; });
     var gDynamic = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.MOVE) > 0; });
