@@ -8,9 +8,9 @@ module.exports = function (creep) {
         var source = filtered.length > 0 ? filtered[0] : ordered[0];
         if (!creep.pos.isNearTo(source))
             creep.moveTo(source);
-        source.transferEnergy(creep)
+        source.transferEnergy(creep);
     } else {
         creep.moveTo(spawn);
-        creep.transferEnergy(spawn)
+        creep.transferEnergy(spawn);
     }
 }

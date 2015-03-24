@@ -50,7 +50,7 @@ if (spawn != null && spawn.spawning == null) {
         }
     }
 
-    else if (harvesters.length == 2 && carriers.length == 0) {
+    else if (harvesters.length >= 2 && carriers.length < 2) {
         spawn.createCreep([Game.CARRY, Game.CARRY, Game.MOVE, Game.MOVE], null, { role: 'carrier' });
     }
 

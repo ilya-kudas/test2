@@ -7,7 +7,11 @@ module.exports = function (creep) {
     if (creep.energy > 0) {
         var harvesters = _.sortBy(_.filter(Game.creeps, { memory: { role: 'harvester' } }), distance);
         if (harvesters.length > 0) {
-            creep.transferEnergy(harvesters[0]);
+            var target = harvesters[0];
+            if (!creep.pos.isNearTo(source))
+                creep.transferEnergy(target);
+            else if (target.energy < creep.energy)
+                creep.transferEnergy(target, creep.energy - (target.energy + creep.energy) / 2);
         }
     }
 
