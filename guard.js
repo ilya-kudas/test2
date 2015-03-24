@@ -38,18 +38,17 @@ var pl = _.filter(pp, function (n) { return spawn.room.lookForAt('creep', n) == 
 for (var name in guards) {
     var creep = guards[name];
 
-    if (Game.flags.Flag2)
-    {
-        if (pl.length > 0)
-        {
+    if (Game.flags.Flag2) {
+        if (pl.length > 0) {
             creep.moveTo(pl[0]);
         }
-        else
-        {
+        else {
             creep.moveTo(Game.flags.Flag2);
         }
         continue;
     }
+    else if (Game.flags.Flag1)
+        creep.moveTo(Game.flags.Flag1);
 
     var sum = sumTargets(creep.pos);
     if (sum > 15) {
@@ -62,6 +61,4 @@ for (var name in guards) {
         }
     }
 
-    if (Game.flags.Flag1)
-        creep.moveTo(Game.flags.Flag1);
 }
