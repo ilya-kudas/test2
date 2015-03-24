@@ -39,6 +39,7 @@ for (var name in guards) {
     var creep = guards[name];
 
     if (Game.flags.Flag2) {
+        if (pp[0].isEqualTo(creep));
         if (pl.length > 0) {
             creep.moveTo(pl[0]);
         }
