@@ -46,7 +46,6 @@ for (var name in guards) {
         else {
             creep.moveTo(Game.flags.Flag2);
         }
-        continue;
     }
     else if (Game.flags.Flag1)
         creep.moveTo(Game.flags.Flag1);
