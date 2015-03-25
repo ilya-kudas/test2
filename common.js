@@ -8,10 +8,12 @@ module.exports = {
                 return;
 
             var w = spawn.room.lookForAt('terrain', p);
-            if (w == 'wall') {
-                console.log(w);
+            if (w == 'wall') 
                 continue;
-            }
+
+            var s = spawn.room.lookForAt('structure', p);
+            if (s != undefined) 
+                continue;
 
             var z = spawn.room.lookForAt('creep', p);
             if (z == undefined) {

@@ -9,7 +9,7 @@ require('guard');
 for (var name in Game.creeps) {
     var creep = Game.creeps[name];
 
-    try {
+    //try {
         if (creep.getActiveBodyparts(Game.HEAL) > 0) {
             healer(creep);
         }
@@ -30,5 +30,5 @@ for (var name in Game.creeps) {
             kite(creep);
         }
 
-    } catch (e) { }
+    //} catch (e) { }
 }
