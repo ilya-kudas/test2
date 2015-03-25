@@ -10,11 +10,11 @@ function getFormationPoints(pos) {
 }
 
 module.exports = function (creep) {
-    var targets = creep.pos.findInRange(Game.MY_CREEPS, 6, {
+    var targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 3, {
         filter: function (object) {
             return object.hits < object.hitsMax;
         }
-    });
+    }), function (object) { return object.hits - object.hitsMax; });
     if (targets.length > 0) {
         var target = targets[0];
 
