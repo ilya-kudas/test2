@@ -12,6 +12,10 @@ function getFormationPoints(pos) {
         [-1,1],
         [2,1],
         [-2,1]
+        [3,0],
+        [-3,0],
+        [3,1],
+        [-3,1],
     ];
     return pp.map(function (p) { return spawn.room.getPositionAt(pos.x + p[0], pos.y + p[1]); })
 }
@@ -32,37 +36,40 @@ function sumTargets(pos)
     return sum;
 }
 
+function formation(creep)
+{
+    for (var n in pp)
+    {
+        var p = pp[n];
+        if (p.isEqualTo(creep.pos))
+            return;
+
+        var z = spawn.room.lookForAt('creep', p);
+        if (z == undefined) {
+            creep.moveTo(p);
+            return;
+        }
+    }
+    creep.moveTo(Game.flags.Flag2);
+}
+
 var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
 var pp = Game.flags.Flag2 ? getFormationPoints(Game.flags.Flag2.pos) : [];
-//var pl = pp.map(function (n) { return spawn.room.lookForAt('creep', n); });
-//var pu = _.filter(pl, function (n) { n == undefined; });
 for (var name in guards) {
     var creep = guards[name];
 
-    if (Game.flags.Flag2) {
-        creep.moveTo(Game.flags.Flag2);
-        for (var p in pp)
-        {
-            if (p.isEqualTo(creep.pos))
-                break;
-
-            var z = spawn.room.lookForAt('creep', n);
-            if (z == undefined) {
-                creep.moveTo(p);
-                break;
-            }
-        }
-    }
+    if (Game.flags.Flag2) 
+        formation(creep);
     else if (Game.flags.Flag1)
         creep.moveTo(Game.flags.Flag1);
 
     var sum = sumTargets(creep.pos);
     if (sum > 15) {
+        console.log('mass attack');
         creep.rangedMassAttack();
     } else {
         var target = creep.pos.findClosest(Game.HOSTILE_CREEPS);
         if (target != null) {
-            //creep.moveTo(target);
             creep.rangedAttack(target);
         }
     }
