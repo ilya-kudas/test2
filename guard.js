@@ -47,6 +47,9 @@ function formation(creep)
     for (var n in pp)
     {
         var p = pp[n];
+        if (p.isEqualTo(creep.pos))
+            return;
+
         var w = spawn.room.lookForAt('terrain', p);
         if (w == 'wall') {
             console.log(w);
