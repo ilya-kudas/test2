@@ -1,4 +1,5 @@
 var spawn = Game.spawns.Spawn1;
+var com = require('common');
 
 function getFormationPoints(pos) {
     var pp = [
@@ -40,45 +41,13 @@ function sumTargets(pos)
     return sum;
 }
 
-function formation(creep)
-{
-    var inForm = _.some(pp, function (p) { return p.isEqualTo(creep.pos); })
-
-    for (var n in pp)
-    {
-        var p = pp[n];
-        if (p.isEqualTo(creep.pos))
-            return;
-
-        var w = spawn.room.lookForAt('terrain', p);
-        if (w == 'wall') {
-            console.log(w);
-            continue;
-        }
-
-        var z = spawn.room.lookForAt('creep', p);
-        if (z == undefined) {
-            if (inForm) {
-                if (creep.pos.isNearTo(p))
-                    creep.moveTo(p);
-                else
-                    continue;
-            }
-            else
-                creep.moveTo(p);
-            return;
-        }
-    }
-    creep.moveTo(Game.flags.Flag1);
-}
-
 var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
 var pp = Game.flags.Flag2 ? getFormationPoints(Game.flags.Flag2.pos) : [];
 for (var name in guards) {
     var creep = guards[name];
 
     if (Game.flags.Flag2) 
-        formation(creep);
+        com.formation(creep, pp);
     else if (Game.flags.Flag1)
         creep.moveTo(Game.flags.Flag1);
 
