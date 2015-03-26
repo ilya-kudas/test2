@@ -12,7 +12,7 @@ module.exports = {
                 continue;
 
             var s = spawn.room.lookForAt('structure', p);
-            if (s != undefined) 
+            if (s != undefined && s.structureType != Game.STRUCTURE_RAMPART)
                 continue;
 
             var z = spawn.room.lookForAt('creep', p);

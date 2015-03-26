@@ -46,7 +46,8 @@ var pp = Game.flags.Flag2 ? getFormationPoints(Game.flags.Flag2.pos) : [];
 for (var name in guards) {
     var creep = guards[name];
 
-    if (Game.flags.Flag2) 
+    if (creep.fatigue > 0);
+    else if (Game.flags.Flag2) 
         com.formation(creep, pp);
     else if (Game.flags.Flag1)
         creep.moveTo(Game.flags.Flag1);
