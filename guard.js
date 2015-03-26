@@ -9,18 +9,22 @@ function getFormationPoints(pos) {
         [2,0],
         [-2,0],
         //[0,-1],
-        //[1,-1],
-        //[-1,-1],
+        [1,-1],
+        [-1,-1],
         [2,-1],
         [-2,-1],
         [3,0],
         [-3,0],
-        [3,-1],
-        [-3,-1],
+        //[3,-1],
+        //[-3,-1],
         [4, 0],
         [-4, 0],
         [4, -1],
-        [-4, -1]
+        [-4, -1],
+        [5, 0],
+        [-5, 0],
+        [5, -1],
+        [-5, -1]
     ];
     return pp.map(function (p) { return spawn.room.getPositionAt(pos.x + p[0], pos.y + p[1]); })
 }
@@ -41,7 +45,7 @@ function sumTargets(pos)
     return sum;
 }
 
-var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
+var guards = _.filter(_.filter(Game.creeps, { memory: { role: 'guard' } }), function(n) { return n.getActiveBodyparts(Game.HEAL) == 0; });
 var pp = Game.flags.Flag2 ? getFormationPoints(Game.flags.Flag2.pos) : [];
 for (var name in guards) {
     var creep = guards[name];

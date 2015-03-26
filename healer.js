@@ -3,21 +3,22 @@ var spawn = Game.spawns.Spawn1;
 function getFormationPoints1(pos) {
     var pp = [
         [0, -1],
-        [1, -1],
-        [-1, -1]
+        [3, -1],
+        [-3, -1]
     ];
     return pp.map(function (p) { return spawn.room.getPositionAt(pos.x + p[0], pos.y + p[1]); })
 }
+
+function requiresHealing(creep) { return creep.hits < creep.hitsMax; };
+function healOrder(creep) { return creep.hits - creep.hitsMax; };
 
 var pp1 = Game.flags.Flag2 ? getFormationPoints1(Game.flags.Flag2.pos) : [];
 
 module.exports = function (creep) {
     var com = require('common');
-    var targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 3, {
-        filter: function (object) {
-            return object.hits < object.hitsMax;
-        }
-    }), function (object) { return object.hits - object.hitsMax; });
+    var targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 1, { filter: requiresHealing }), healOrder);
+    if (targets.length == 0)
+        targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 3, { filter: requiresHealing }), healOrder);
     if (targets.length > 0) {
         var target = targets[0];
 
