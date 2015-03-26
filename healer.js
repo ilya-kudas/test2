@@ -1,5 +1,3 @@
-var spawn = Game.spawns.Spawn1;
-
 function getFormationPoints1(pos) {
     var pp = [
         [0, -1],
@@ -15,7 +13,6 @@ function healOrder(creep) { return creep.hits - creep.hitsMax; };
 var pp1 = Game.flags.Flag2 ? getFormationPoints1(Game.flags.Flag2.pos) : [];
 
 module.exports = function (creep) {
-    var com = require('common');
     var targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 1, { filter: requiresHealing }), healOrder);
     if (targets.length == 0)
         targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 3, { filter: requiresHealing }), healOrder);
@@ -35,5 +32,5 @@ module.exports = function (creep) {
     else if (creep.hits / creep.hitsMax < 0.7 || creep.pos.findInRange(Game.HOSTILE_CREEPS, 3).length > 0) 
         creep.moveTo(spawn);
     else if (Game.flags.Flag2)
-        com.formation(creep, pp1);
+        formation(creep, pp1);
 }

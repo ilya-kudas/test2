@@ -1,3 +1,4 @@
+require('common');
 var harvester = require('harvester');
 var builder = require('builder');
 var healer = require('healer');

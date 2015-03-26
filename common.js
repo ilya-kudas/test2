@@ -1,33 +1,33 @@
-module.exports = {
-    formation: function (creep, pp) {
-        var inForm = _.some(pp, function (p) { return p.isEqualTo(creep.pos); })
+var spawn = Game.spawns.Spawn1;
 
-        for (var n in pp) {
-            var p = pp[n];
-            if (p.isEqualTo(creep.pos))
-                return;
+function formation(creep, pp) {
+    var inForm = _.some(pp, function (p) { return p.isEqualTo(creep.pos); })
 
-            var w = spawn.room.lookForAt('terrain', p);
-            if (w == 'wall') 
-                continue;
+    for (var n in pp) {
+        var p = pp[n];
+        if (p.isEqualTo(creep.pos))
+            return;
 
-            var s = spawn.room.lookForAt('structure', p);
-            if (s != undefined && s.structureType != Game.STRUCTURE_RAMPART)
-                continue;
+        var w = spawn.room.lookForAt('terrain', p);
+        if (w == 'wall')
+            continue;
 
-            var z = spawn.room.lookForAt('creep', p);
-            if (z == undefined) {
-                if (inForm) {
-                    if (creep.pos.isNearTo(p))
-                        creep.moveTo(p);
-                    else
-                        continue;
-                }
-                else
+        var s = spawn.room.lookForAt('structure', p);
+        if (s != undefined && s.structureType != Game.STRUCTURE_RAMPART)
+            continue;
+
+        var z = spawn.room.lookForAt('creep', p);
+        if (z == undefined) {
+            if (inForm) {
+                if (creep.pos.isNearTo(p))
                     creep.moveTo(p);
-                return;
+                else
+                    continue;
             }
+            else
+                creep.moveTo(p);
+            return;
         }
-        creep.moveTo(Game.flags.Flag1);
     }
-};
+    creep.moveTo(Game.flags.Flag1);
+}

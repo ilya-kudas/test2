@@ -1,5 +1,3 @@
-var spawn = Game.spawns.Spawn1;
-
 function createRanged(number)
 {
     var a = [];
@@ -17,32 +15,37 @@ function sum(array) {
     return res;
 }
 
-if (spawn != null && spawn.spawning == null) {
+function Spawn() {
+    if (Game.time % 4 != 0)
+        return;
+
+    if (spawn == null || spawn.spawning != null)
+        return;
 
     var room = spawn.room;
     var harvesters = _.filter(Game.creeps, { memory: { role: 'harvester' } });
     var carriers = _.filter(Game.creeps, { memory: { role: 'carrier' } });
     var guards = _.filter(Game.creeps, { memory: { role: 'guard' } });
     var kites = _.filter(Game.creeps, { memory: { role: 'kite' } });
-    var hostiles = _.filter(Game.HOSTILE_CREEPS, function (c) { return c.hits != 5000; });
+    var hostiles = _.filter(room.find(Game.HOSTILE_CREEPS), function (c) { return c.hits != 5000; });
     var healers = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.HEAL) > 0; });
-    var gStatic = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.MOVE) == 0; });
-    var gDynamic = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.MOVE) > 0; });
+    //var gStatic = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.MOVE) == 0; });
+    //var gDynamic = _.filter(guards, function (c) { return c.getActiveBodyparts(Game.MOVE) > 0; });
     var gHealth = sum(_.pluck(guards, 'hits'));
     var hHealth = sum(_.pluck(hostiles, 'hits'));
 
     if ((hostiles.length > 0 && (gHealth / hHealth) < 2) || spawn.energy > 5000) {
-        if (kites.length < 1 && gDynamic.length < 2)
+        if (kites.length < 1 && guards.length < 2)
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE, Game.RANGED_ATTACK, Game.MOVE], null, { role: 'kite' });
         else if (healers.length < 3 && guards.length / healers.length > 3)
             spawn.createCreep([Game.HEAL, Game.HEAL, Game.HEAL, Game.HEAL, Game.MOVE], null, { role: 'guard' });
-/*
-        else if (guards.length < 6) {
-            if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
-                if (hostiles.length > guards.length && createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
-                    if (guards.length == 0) createRanged(3);
-        }
-*/
+            /*
+                    else if (guards.length < 6) {
+                        if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
+                            if (hostiles.length > guards.length && createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
+                                if (guards.length == 0) createRanged(3);
+                    }
+            */
         else {
             spawn.createCreep([Game.TOUGH, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE], null, { role: 'guard' });
             //if (kites.length < 20)
@@ -58,3 +61,5 @@ if (spawn != null && spawn.spawning == null) {
         spawn.createCreep([Game.WORK, Game.WORK, Game.CARRY, Game.CARRY, Game.MOVE], null, { role: 'harvester' });
     }
 }
+
+Spawn();
