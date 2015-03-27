@@ -1,3 +1,4 @@
+var spawn = Game.spawns.Spawn1;
 module.exports = {
     formation: function (creep, pp) {
         var inForm = _.some(pp, function (p) { return p.isEqualTo(creep.pos); })

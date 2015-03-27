@@ -12,7 +12,7 @@ function getFormationPoints1(pos) {
 function requiresHealing(creep) { return creep.hits < creep.hitsMax; };
 function healOrder(creep) { return creep.hits - creep.hitsMax; };
 function findHealTargets(creep, range) {
-    return _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 1, { filter: requiresHealing }), healOrder);
+    return _.sortBy(_.difference(creep.pos.findInRange(Game.MY_CREEPS, 1, { filter: requiresHealing }), [creep]), healOrder);
 }
 var pp1 = Game.flags.Flag2 ? getFormationPoints1(Game.flags.Flag2.pos) : [];
 
