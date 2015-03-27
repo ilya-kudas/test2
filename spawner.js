@@ -1,3 +1,5 @@
+var spawn = Game.spawns.Spawn1;
+
 function createRanged(number)
 {
     var a = [];
@@ -39,13 +41,13 @@ function Spawn() {
             spawn.createCreep([Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE, Game.RANGED_ATTACK, Game.MOVE], null, { role: 'kite' });
         else if (healers.length < 3 && guards.length / healers.length > 3)
             spawn.createCreep([Game.HEAL, Game.HEAL, Game.HEAL, Game.HEAL, Game.MOVE], null, { role: 'guard' });
-            /*
-                    else if (guards.length < 6) {
-                        if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
-                            if (hostiles.length > guards.length && createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
-                                if (guards.length == 0) createRanged(3);
-                    }
-            */
+/*
+        else if (guards.length < 6) {
+            if (createRanged(5) == Game.ERR_NOT_ENOUGH_ENERGY)
+                if (hostiles.length > guards.length && createRanged(4) == Game.ERR_NOT_ENOUGH_ENERGY)
+                    if (guards.length == 0) createRanged(3);
+        }
+*/
         else {
             spawn.createCreep([Game.TOUGH, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.RANGED_ATTACK, Game.MOVE], null, { role: 'guard' });
             //if (kites.length < 20)

@@ -1,3 +1,5 @@
+var spawn = Game.spawns.Spawn1;
+
 function getPositions(pos, step)
 {
     var res = [];

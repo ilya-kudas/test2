@@ -1,3 +1,6 @@
+var spawn = Game.spawns.Spawn1;
+var com = require('common');
+
 function getFormationPoints(pos) {
     var pp = [
         [0,0],
@@ -49,7 +52,7 @@ for (var name in guards) {
 
     if (creep.fatigue > 0);
     else if (Game.flags.Flag2) 
-        formation(creep, pp);
+        com.formation(creep, pp);
     else if (Game.flags.Flag1)
         creep.moveTo(Game.flags.Flag1);
 

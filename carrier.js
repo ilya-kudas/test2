@@ -1,3 +1,5 @@
+var spawn = Game.spawns.Spawn1;
+
 module.exports = function (creep) {
     if (creep.energy < creep.energyCapacity && creep.getActiveBodyparts(Game.CARRY) > 0) {
         var harvesters = _.filter(Game.creeps, { memory: { role: 'harvester' } });
