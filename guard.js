@@ -58,7 +58,7 @@ for (var name in guards) {
         console.log('mass attack');
         creep.rangedMassAttack();
     } else {
-        var target = creep.pos.findClosest(Game.HOSTILE_CREEPS);
+        var target = creep.pos.findInRange(Game.HOSTILE_CREEPS, 3)[0];
         if (target != null) {
             creep.rangedAttack(target);
         }

@@ -9,13 +9,15 @@ function getFormationPoints1(pos) {
 
 function requiresHealing(creep) { return creep.hits < creep.hitsMax; };
 function healOrder(creep) { return creep.hits - creep.hitsMax; };
-
+function findHealTargets(creep, range) {
+    return _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 1, { filter: requiresHealing }), healOrder);
+}
 var pp1 = Game.flags.Flag2 ? getFormationPoints1(Game.flags.Flag2.pos) : [];
 
 module.exports = function (creep) {
-    var targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 1, { filter: requiresHealing }), healOrder);
+    var targets = findHealTargets(creep, 1);
     if (targets.length == 0)
-        targets = _.sortBy(creep.pos.findInRange(Game.MY_CREEPS, 3, { filter: requiresHealing }), healOrder);
+        targets = findHealTargets(creep, 3);
     if (targets.length > 0) {
         var target = targets[0];
 
